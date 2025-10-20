@@ -1,6 +1,6 @@
 var createTextStyle = function(feature, resolution, labelText, labelFont,
                                labelFill, placement, bufferColor,
-                               bufferWidth) {
+                               bufferWidth, offsetX, offsetY) {
 
     if (feature.hide || !labelText) {
         return; 
@@ -20,8 +20,8 @@ var createTextStyle = function(feature, resolution, labelText, labelFont,
         text: labelText,
         textBaseline: "middle",
         textAlign: "left",
-        offsetX: 8,
-        offsetY: 3,
+        offsetX: offsetX,
+        offsetY: offsetY,
         placement: placement,
         maxAngle: 0,
         fill: new ol.style.Fill({
@@ -54,3 +54,4 @@ function stripe(stripeWidth, gapWidth, angle, color) {
 
     return outerContext.createPattern(outerCanvas, 'no-repeat');
 };
+
