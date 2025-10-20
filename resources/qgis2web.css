@@ -408,4 +408,12 @@ td video {
 .bottom-attribution > li {
 	padding-left: 8px !important;
 	list-style: none;	
+
 	}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* jarak kecil antar teks */
+  white-space: nowrap; /* biar teks ga turun ke baris baru */
+}
