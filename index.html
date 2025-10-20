@@ -1,68 +1,197 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" href="./resources/ol.css">
-        <link rel="stylesheet" href="resources/fontawesome-all.min.css">
-        <link href="resources/photon-geocoder-autocomplete.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="./resources/ol-layerswitcher.css">
-        <link rel="stylesheet" href="./resources/qgis2web.css">
-        <style>
-        html, body {
-            background-color: #ffffff;
-        }
-        .ol-control > * {
-            background-color: #f8f8f8!important;
-            color: #444444!important;
-            border-radius: 0px;
-        }
-        .ol-attribution a, .gcd-gl-input::placeholder, .search-layer-input-search::placeholder {
-            color: #444444!important;
-        }
-        .search-layer-input-search {
-            background-color: #f8f8f8!important;
-        }
-        .ol-control > *:focus, .ol-control >*:hover {
-            background-color: rgba(248, 248, 248, 0.7)!important;
-        } 
-        .ol-control {
-            background-color: rgba(255,255,255,.4) !important;
-            padding: 2px !important;
-        } 
-        </style>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="./resources/ol.css">
+    <link rel="stylesheet" href="resources/fontawesome-all.min.css">
+    <link href="resources/photon-geocoder-autocomplete.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./resources/ol-layerswitcher.css">
+    <link rel="stylesheet" href="./resources/qgis2web.css">
 
-        <style>
-        html, body, #map {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
-        }
-        </style>
-        <title></title>
-    </head>
-    <body>
-        <div id="map">
-            <div id="popup" class="ol-popup">
-                <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-                <div id="popup-content"></div>
-            </div>
-        </div>
-        <script src="resources/qgis2web_expressions.js"></script>
-<script src="resources/proj4.js"></script>
-        <script>proj4.defs('EPSG:4326','+proj=longlat +datum=WGS84 +no_defs');</script>
-        <script src="./resources/functions.js"></script>
-        <script src="./resources/ol.js"></script>
-        <script src="./resources/ol-layerswitcher.js"></script>
-        <script src="resources/photon-geocoder-autocomplete.min.js"></script>
-        <script src="layers/KabupatenKota_1.js"></script>
-        <script src="styles/KabupatenKota_1_style.js"></script>
-        <script src="./layers/layers.js" type="text/javascript"></script> 
-        <script src="./resources/Autolinker.min.js"></script>
-        <script src="./resources/qgis2web.js"></script>
-    </body>
+    <style>
+      html, body, #map {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        background-color: #ffffff;
+      }
+
+      .ol-control > * {
+        background-color: #f8f8f8!important;
+        color: #444!important;
+        border-radius: 0px;
+      }
+
+      .ol-control {
+        background-color: rgba(255,255,255,.4) !important;
+        padding: 2px !important;
+      }
+
+      /* posisi overlay */
+      .text-center {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        background: rgba(255,255,255,0.8);
+        padding: 8px 16px;
+        border-radius: 8px;
+      }
+
+.logo-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* jarak antar logo */
+  margin-bottom: 4px;
+}
+
+.ic {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+      
+.ic-besar {
+    width: auto;
+    height: 50px;
+  }
+      
+.top-right-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  padding: 2px 4px;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+      #bottom-left-container {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        width: 120px;    /* atur ukuran kecil di sini */
+        height: auto;   
+        border-radius: 5px; 
+}
+
+@media (max-width: 768px) {
+  /* Judul di tengah */
+  .text-center {
+    top: 5px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    width: 90%;
+  }
+
+  .text-center h2 {
+    font-size: 1.2rem;
+    margin: 4px 0;
+  }
+
+  .text-center h3 {
+    font-size: 1rem;
+    margin: 2px 0;
+  }
+
+  .text-center h4 {
+    font-size: 0.9rem;
+    margin: 2px 0;
+  }
+
+  /* Logo di header */
+  .ic {
+    width: 35px;
+    height: 35px;
+  }
+
+  .ic-besar {
+    width: auto;
+    height: 35px;
+  }
+
+  .logo-group {
+    gap: 4px;
+  }
+
+  /* Sumber data kanan atas */
+  .top-right-container {
+    font-size: 0.75rem;
+    top: 5px;
+    right: 5px;
+    padding: 2px 6px;
+  }
+
+  /* Legenda kiri bawah */
+  #bottom-left-container {
+    bottom: 8px;
+    left: 8px;
+  }
+
+  #bottom-left-container img {
+    width: 200px !important; /* paksa lebih kecil di HP */
+    height: auto;
+  }
+}
+      
+    </style>
+
+    <title>Hiperglikemia Jawa Tengah berdasarkan CKG</title>
+  </head>
+  <body>
+    <div id="map">
+      <div id="popup" class="ol-popup">
+        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+        <div id="popup-content"></div>
+      </div>
+    </div>
+
+   <div class="text-center">
+    <div class="logo-group">
+  <a href="https://dinkes.jatengprov.go.id/">
+    <img src="logo jateng.png" alt="Logo Jateng" class="ic">
+  </a>
+    <img src="logo kesmas unnes.PNG" alt="Logo Kedua" class="ic ic-besar">
+  </a>
+</div>
+      <h2>Peta Sebaran</h2>
+      <h3>Hiperglikemia di Jawa Tengah berdasarkan Data CKG</h3>
+      <h4>Bulan April - September 2025</h4>
+    </div>
+
+    <div class="top-right-container">
+      <h4>Sumber data: Rekap ASIK CKG</h4>
+    </div> 
+
+    <div id="bottom-left-container">
+      <img src="legenda.png" alt="Legenda Peta" style="width: 270px;height:auto;">
+    </div>
+
+    <!-- script tetap di bawah -->
+    <script src="resources/qgis2web_expressions.js"></script>
+    <script src="resources/proj4.js"></script>
+    <script>proj4.defs('EPSG:4326','+proj=longlat +datum=WGS84 +no_defs');</script>
+    <script src="./resources/functions.js"></script>
+    <script src="./resources/ol.js"></script>
+    <script src="./resources/ol-layerswitcher.js"></script>
+    <script src="resources/photon-geocoder-autocomplete.min.js"></script>
+    <script src="layers/KabupatenKota_1.js"></script>
+    <script src="styles/KabupatenKota_1_style.js"></script>
+    <script src="./layers/layers.js" type="text/javascript"></script> 
+    <script src="./resources/Autolinker.min.js"></script>
+    <script src="./resources/qgis2web.js"></script>
+  </body>
 </html>
+
+
+
+
+
