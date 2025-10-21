@@ -2,7 +2,6 @@ backend:
   name: git-gateway
   branch: main
 
-publish_mode: editorial_workflow
 media_folder: "resources/uploads"
 public_folder: "/resources/uploads"
 
@@ -11,8 +10,8 @@ collections:
     label: "Data Layer"
     folder: "layers"
     create: true
-    format: frontmatter
     extension: "geojson"
+    format: "json"
     fields:
       - { name: "title", label: "Judul", widget: "string" }
       - { name: "body", label: "Konten GeoJSON", widget: "code", default_language: "json" }
