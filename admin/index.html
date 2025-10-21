@@ -1,24 +1,23 @@
-<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
     <title>Admin</title>
     <!-- load decap cms stable version -->
+    <!-- Set CMS_MANUAL_INIT to true to prevent auto-init -->
+    <script>window.CMS_MANUAL_INIT = true;</script>
     <script src="https://unpkg.com/decap-cms@2.10.192/dist/decap-cms.js"></script>
   </head>
   <body>
     <script>
-      window.addEventListener("load", () => {
-        setTimeout(() => {
-          if (typeof CMS !== "undefined") {
-            CMS.init();
-            console.log("✅ CMS berhasil dimuat");
-          } else {
-            console.error("❌ CMS belum ter-load");
-          }
-        }, 300);
+      // Listen for the 'load' event from Decap CMS
+      window.addEventListener('cms-ready', () => {
+        CMS.init(); // Initialize CMS now that it's ready
+        console.log("✅ CMS berhasil dimuat");
       });
+
+      // Fallback or additional checks can be added here if needed,
+      // but cms-ready is the recommended event to listen for.
+      // The window 'load' event listener is no longer necessary for CMS initialization.
     </script>
   </body>
 </html>
-
