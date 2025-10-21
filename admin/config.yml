@@ -11,6 +11,7 @@ collections:
     label: "Data Layer"
     folder: "layers"
     create: true
+    format: frontmatter
     extension: "geojson"
     fields:
       - { name: "title", label: "Judul", widget: "string" }
