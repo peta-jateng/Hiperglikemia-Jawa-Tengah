@@ -1,0 +1,18 @@
+backend:
+  name: github
+  repo: peta-jateng/Hiperglikemia-Jawa-Tengah
+  branch: main
+
+publish_mode: editorial_workflow
+media_folder: "resources/uploads"
+public_folder: "/resources/uploads"
+
+collections:
+  - name: "layers"
+    label: "Data Layer"
+    folder: "layers"
+    create: true
+    extension: "geojson"
+    fields:
+      - { name: "title", label: "Judul", widget: "string" }
+      - { name: "body", label: "Konten GeoJSON", widget: "code", default_language: "json" }
