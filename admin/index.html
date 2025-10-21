@@ -3,12 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <title>Admin</title>
-    <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+    <!-- load decap cms -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </head>
   <body>
-    
-  <script>
-      CMS.init();
+    <script>
+      // Inisialisasi CMS
+      if (window.CMS) {
+        CMS.init();
+      } else {
+        console.error("CMS belum ter-load");
+      }
     </script>
   </body>
 </html>
