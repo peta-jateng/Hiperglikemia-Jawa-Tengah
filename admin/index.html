@@ -8,8 +8,7 @@
   </head>
   <body>
     <script>
-      // Inisialisasi CMS
-      if (window.CMS) {
+       if (typeof CMS !== "undefined") {
         CMS.init();
       } else {
         console.error("CMS belum ter-load");
